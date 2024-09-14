@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 7: Structures and Unions">
+    <title>C Language - Chapter 7: Structures and Unions</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00796b;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #fff;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 7: Structures and Unions</h1>
+            <p>Learn about structures and unions in C to manage complex data.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction-structures">Introduction to Structures</a></li>
+            <li><a href="#nested-structures">Nested Structures</a></li>
+            <li><a href="#arrays-structures">Arrays of Structures</a></li>
+            <li><a href="#introduction-unions">Introduction to Unions</a></li>
+            <li><a href="#structures-vs-unions">Structures vs Unions</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Introduction to Structures Section -->
+        <section id="introduction-structures" class="section">
+            <div class="container">
+                <h2>1. Introduction to Structures</h2>
+                <p>A structure in C is a user-defined data type that groups related variables of different types under a single name. Structures are used to represent a record or a collection of different types of data.</p>
+                <p>To define a structure, use the `struct` keyword:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+int main() {
+    struct Person person1 = {"Alice", 30, 5.6};
+
+    printf("Name: %s\n", person1.name);
+    printf("Age: %d\n", person1.age);
+    printf("Height: %.2f\n", person1.height);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Nested Structures Section -->
+        <section id="nested-structures" class="section">
+            <div class="container">
+                <h2>2. Nested Structures</h2>
+                <p>Structures can contain other structures, allowing for complex data representation:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Address {
+    char street[100];
+    char city[50];
+};
+
+struct Person {
+    char name[50];
+    struct Address address;
+};
+
+int main() {
+    struct Person person1 = {"Bob", {"123 Main St", "Springfield"}};
+
+    printf("Name: %s\n", person1.name);
+    printf("Address: %s, %s\n", person1.address.street, person1.address.city);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Arrays of Structures Section -->
+        <section id="arrays-structures" class="section">
+            <div class="container">
+                <h2>3. Arrays of Structures</h2>
+                <p>You can create an array of structures to handle multiple records efficiently:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Student {
+    char name[50];
+    int rollNo;
+};
+
+int main() {
+    struct Student students[3] = {
+        {"John", 101},
+        {"Jane", 102},
+        {"Doe", 103}
+    };
+
+    for (int i = 0; i &lt; 3; i++) {
+        printf("Student %d: %s, Roll No: %d\n", i + 1, students[i].name, students[i].rollNo);
+    }
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Introduction to Unions Section -->
+        <section id="introduction-unions" class="section">
+            <div class="container">
+                <h2>4. Introduction to Unions</h2>
+                <p>A union is a user-defined data type similar to a structure, but it allows storing different data types in the same memory location. Only one member can hold a value at any given time.</p>
+                <p>To define a union, use the `union` keyword:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+union Data {
+    int intValue;
+    float floatValue;
+    char charValue;
+};
+
+int main() {
+    union Data data;
+
+    data.intValue = 10;
+    printf("Integer: %d\n", data.intValue);
+
+    data.floatValue = 220.5;
+    printf("Float: %.2f\n", data.floatValue);
+
+    data.charValue = 'A';
+    printf("Character: %c\n", data.charValue);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Structures vs Unions Section -->
+        <section id="structures-vs-unions" class="section">
+            <div class="container">
+                <h2>5. Structures vs Unions</h2>
+                <p>Here are the main differences between structures and unions:</p>
+                <ul>
+                    <li><strong>Memory Allocation:</strong> Structures allocate memory for all members simultaneously, while unions allocate memory for the largest member only.</li>
+                    <li><strong>Access:</strong> Structures can access all members at any time, while unions can only access one member at a time.</li>
+                    <li><strong>Use Cases:</strong> Structures are used for grouping related data, whereas unions are used to store different types of data in the same location to save memory.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2>6. Examples</h2>
+
+                <h3>Example 1: Basic Structure</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Employee {
+    char name[50];
+    int id;
+};
+
+int main() {
+    struct Employee emp = {"Alice", 1001};
+
+    printf("Employee Name: %s\n", emp.name);
+    printf("Employee ID: %d\n", emp.id);
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: Nested Structures</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Event {
+    char name[50];
+    struct Date eventDate;
+};
+
+int main() {
+    struct Event event = {"Conference", {15, 9, 2024}};
+
+    printf("Event Name: %s\n", event.name);
+    printf("Event Date: %d-%d-%d\n", event.eventDate.day, event.eventDate.month, event.eventDate.year);
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 3: Array of Structures</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Product {
+    char name[50];
+    float price;
+};
+
+int main() {
+    struct Product products[2] = {
+        {"Laptop", 999.99},
+        {"Phone", 499.99}
+    };
+
+    for (int i = 0; i &lt; 2; i++) {
+        printf("Product Name: %s, Price: %.2f\n", products[i].name, products[i].price);
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 4: Union Basics</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+union Data {
+    int intValue;
+    float floatValue;
+};
+
+int main() {
+    union Data data;
+
+    data.intValue = 100;
+    printf("Integer Value: %d\n", data.intValue);
+
+    data.floatValue = 98.6;
+    printf("Float Value: %.2f\n", data.floatValue);
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 5: Union with Structs</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+union Info {
+    int intValue;
+    char charValue;
+    float floatValue;
+};
+
+struct Student {
+    char name[50];
+    union Info info;
+};
+
+int main() {
+    struct Student student = {"John", {100}};
+    printf("Student Name: %s\n", student.name);
+    printf("Union Integer Value: %d\n", student.info.intValue);
+
+    student.info.floatValue = 3.14;
+    printf("Union Float Value: %.2f\n", student.info.floatValue);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>7. Exercises</h2>
+                <p>Try these exercises to practice structures and unions:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Create a structure for a book with title, author, and price. Write a program to input and display these details.</li>
+                    <li><strong>Exercise 2:</strong> Implement a program that uses nested structures to represent a company with departments and employees.</li>
+                    <li><strong>Exercise 3:</strong> Write a program that creates an array of structures for students, each with name, roll number, and marks. Compute and display the average marks.</li>
+                    <li><strong>Exercise 4:</strong> Define a union for different data types and write a program to demonstrate how to use the union to store and display data.</li>
+                    <li><strong>Exercise 5:</strong> Create a structure with a union as a member, and write a program to show how to use both structure and union members effectively.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>

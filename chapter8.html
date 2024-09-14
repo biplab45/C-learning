@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 8: Functions">
+    <title>C Language - Chapter 8: Functions</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #eef2f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #6c63ff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6c63ff;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #6c63ff;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 8: Functions in C</h1>
+            <p>Explore functions, their types, and implementation in C programming.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#types">Types of Functions</a></li>
+            <li><a href="#prototypes">Function Prototypes</a></li>
+            <li><a href="#params">Parameter Passing</a></li>
+            <li><a href="#recursion">Recursion</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="intro" class="section">
+            <div class="container">
+                <h2>1. Introduction to Functions</h2>
+                <p>A function is a block of code that performs a specific task. Functions promote code reusability and modular programming.</p>
+                <h3>Example 1: Simple Function</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void greet() {
+    printf("Hello, welcome to C programming!\n");
+}
+
+int main() {
+    greet();
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: Function with Return Value</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(5, 7);
+    printf("Result: %d\n", result);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Types of Functions Section -->
+        <section id="types" class="section">
+            <div class="container">
+                <h2>2. Types of Functions</h2>
+                <ul>
+                    <li><strong>Built-in Functions:</strong> Predefined functions in C like <code>printf()</code>, <code>scanf()</code>, <code>strcpy()</code>, etc.</li>
+                    <li><strong>User-defined Functions:</strong> Functions created by the user.</li>
+                </ul>
+
+                <h3>Example 1: Using Built-in Function</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("This is a built-in function\n");
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: User-Defined Function</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void displayMessage() {
+    printf("This is a user-defined function\n");
+}
+
+int main() {
+    displayMessage();
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 3: Passing Values to User-Defined Function</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void square(int num) {
+    printf("Square of %d is %d\n", num, num * num);
+}
+
+int main() {
+    square(4);
+    square(9);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 4: User-Defined Function with Return Value</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    int result = multiply(4, 5);
+    printf("Result: %d\n", result);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Function Prototypes Section -->
+        <section id="prototypes" class="section">
+            <div class="container">
+                <h2>3. Function Prototypes</h2>
+                <p>A function prototype is a declaration of a function that informs the compiler about its return type and parameters before its actual definition.</p>
+
+                <h3>Example 1: Function Prototype</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+// Function prototype
+int add(int a, int b);
+
+int main() {
+    int sum = add(4, 7);
+    printf("Sum: %d\n", sum);
+    return 0;
+}
+
+// Function definition
+int add(int a, int b) {
+    return a + b;
+}
+                </code></pre>
+
+                <h3>Example 2: Prototype with Different Return Type</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+float divide(int a, int b);  // Prototype
+
+int main() {
+    float result = divide(10, 3);
+    printf("Division result: %.2f\n", result);
+    return 0;
+}
+
+float divide(int a, int b) {
+    return (float)a / b;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Parameter Passing Section -->
+        <section id="params" class="section">
+            <div class="container">
+                <h2>4. Parameter Passing</h2>
+                <p>There are two ways to pass parameters to a function in C: <strong>pass by value</strong> and <strong>pass by reference</strong>.</p>
+
+                <h3>Pass by Value</h3>
+                <p>In pass by value, the actual value is passed to the function, and changes made inside the function do not affect the original variable.</p>
+                <h3>Example: Pass by Value (continued)</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void increment(int num) {
+    num++;
+    printf("Inside function: %d\n", num);
+}
+
+int main() {
+    int value = 10;
+    increment(value);
+    printf("Outside function: %d\n", value);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Pass by Reference</h3>
+                <p>In pass by reference, the address of the variable is passed, allowing the function to modify the original variable.</p>
+                <h3>Example: Pass by Reference</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void increment(int *num) {
+    (*num)++;
+}
+
+int main() {
+    int value = 10;
+    increment(&value);
+    printf("After increment: %d\n", value);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Recursion Section -->
+        <section id="recursion" class="section">
+            <div class="container">
+                <h2>5. Recursion</h2>
+                <p>Recursion occurs when a function calls itself. It is useful for solving problems that can be broken down into smaller, similar problems.</p>
+
+                <h3>Example 1: Factorial Calculation</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int number = 5;
+    printf("Factorial of %d is %d\n", number, factorial(number));
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: Fibonacci Sequence</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int terms = 5;
+    for (int i = 0; i < terms; i++) {
+        printf("%d ", fibonacci(i));
+    }
+    printf("\n");
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 3: Power of a Number</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int power(int base, int exp) {
+    if (exp == 0) return 1;
+    return base * power(base, exp - 1);
+}
+
+int main() {
+    int base = 2, exponent = 3;
+    printf("%d^%d = %d\n", base, exponent, power(base, exponent));
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 4: Sum of Natural Numbers</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int sum(int n) {
+    if (n <= 1) return n;
+    return n + sum(n - 1);
+}
+
+int main() {
+    int number = 5;
+    printf("Sum of first %d natural numbers is %d\n", number, sum(number));
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>6. Exercises</h2>
+                <p>Try solving these exercises to reinforce your understanding of functions:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Write a function to calculate the greatest common divisor (GCD) of two numbers using recursion.</li>
+                    <li><strong>Exercise 2:</strong> Create a function that takes an array and its size as arguments and returns the sum of its elements.</li>
+                    <li><strong>Exercise 3:</strong> Implement a function to check if a number is prime. Use this function in your main program to test various numbers.</li>
+                    <li><strong>Exercise 4:</strong> Write a function to reverse a string. Test it with different strings.</li>
+                    <li><strong>Exercise 5:</strong> Develop a function that calculates the n-th term of the Fibonacci series using both iterative and recursive methods. Compare their performances.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

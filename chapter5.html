@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 4: Functions">
+    <title>C Language - Chapter 4: Functions</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00796b;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #fff;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 4: Functions</h1>
+            <p>Learn how to create and use functions in C to modularize your code.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#types">Function Types</a></li>
+            <li><a href="#parameters">Function Parameters</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2>1. Introduction to Functions</h2>
+                <p>Functions in C are blocks of code that perform a specific task. Functions help in breaking down complex problems into smaller, manageable parts.</p>
+                <p>Functions provide several benefits:</p>
+                <ul>
+                    <li><strong>Modularity:</strong> Functions help in breaking down complex programs into smaller, manageable functions.</li>
+                    <li><strong>Reusability:</strong> Functions can be reused across multiple programs or multiple times within the same program.</li>
+                    <li><strong>Maintainability:</strong> Functions make it easier to maintain and update code.</li>
+                </ul>
+                <p>A function in C is declared with a function header, which specifies the return type, function name, and parameters (if any). The function body contains the code to be executed.</p>
+            </div>
+        </section>
+
+        <!-- Function Types Section -->
+        <section id="types" class="section">
+            <div class="container">
+                <h2>2. Function Types</h2>
+
+                <h3>Built-in Functions</h3>
+                <p>C provides several built-in functions that perform common tasks. Examples include:</p>
+                <ul>
+                    <li><strong>printf()</strong>: Prints formatted output to the console.</li>
+                    <li><strong>scanf()</strong>: Reads formatted input from the console.</li>
+                    <li><strong>strlen()</strong>: Returns the length of a string.</li>
+                </ul>
+
+                <h3>User-Defined Functions</h3>
+                <p>You can also create your own functions to perform specific tasks:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+// Function declaration
+void greet();
+
+int main() {
+    greet(); // Function call
+    return 0;
+}
+
+// Function definition
+void greet() {
+    printf("Hello, World!\n");
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Function Parameters Section -->
+        <section id="parameters" class="section">
+            <div class="container">
+                <h2>3. Function Parameters</h2>
+                
+                <h3>Passing Arguments</h3>
+                <p>Functions can accept arguments, which are values passed to the function:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+// Function declaration
+void printSum(int a, int b);
+
+int main() {
+    int x = 5, y = 10;
+    printSum(x, y); // Function call
+    return 0;
+}
+
+// Function definition
+void printSum(int a, int b) {
+    int sum = a + b;
+    printf("Sum: %d\n", sum);
+}
+                </code></pre>
+
+                <h3>Return Values</h3>
+                <p>Functions can also return values to the caller:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+// Function declaration
+int square(int num);
+
+int main() {
+    int x = 4;
+    int result = square(x); // Function call
+    printf("Square: %d\n", result);
+    return 0;
+}
+
+// Function definition
+int square(int num) {
+    return num * num;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2>4. Examples</h2>
+                <h3>Example 1: Function with No Parameters</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void printMessage() {
+    printf("This is a function with no parameters.\n");
+}
+
+int main() {
+    printMessage();
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: Function with One Parameter</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void printSquare(int num) {
+    printf("Square: %d\n", num * num);
+}
+
+int main() {
+    printSquare(7);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 3: Function with Multiple Parameters</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void printProduct(int a, int b) {
+    printf("Product: %d\n", a * b);
+}
+
+int main() {
+    printProduct(4, 5);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 4: Function Returning a Value</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(3, 8);
+    printf("Sum: %d\n", result);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 5: Function with Array as Parameter</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i &lt; size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    printArray(numbers, 5);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>5. Exercises</h2>
+                <p>Try these exercises to practice functions:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Write a function that returns the maximum of two numbers and test it.</li>
+                    <li><strong>Exercise 2:</strong> Create a function that calculates the factorial of a number and uses it in the main program.</li>
+                    <li><strong>Exercise 3:</strong> Implement a function that reverses a string and use it in your program.</li>
+                    <li><strong>Exercise 4:</strong> Write a function that checks if a number is prime and call it in the main program.</li>
+                    <li><strong>Exercise 5:</strong> Create a function that calculates the power of a number (base^exponent) and use it in your program.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>

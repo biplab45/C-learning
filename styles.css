@@ -1,0 +1,189 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #fff;
+    position: relative;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+    animation: slideIn 2s ease-out;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 5px 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #fff;
+    color: #6e45e2;
+    transform: scale(1.1);
+}
+
+/* Intro section */
+.intro {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #4edde2, #2866d8);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #fff;
+    animation: fadeIn 2s ease-out;
+}
+
+.intro h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.intro p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+}
+
+/* Chapters section */
+.chapters {
+    padding: 20px;
+    text-align: center;
+}
+
+.chapters h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.chapter-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chapter {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: calc(33% - 40px);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chapter:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.chapter h3 {
+    margin: 0 0 10px;
+    font-size: 1.8em;
+}
+
+.chapter p {
+    margin: 0;
+}
+
+/* Short Note section */
+.short-note {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #4caf50, #2196f3);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #fff;
+}
+
+.short-note h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.short-note p {
+    font-size: 1.2em;
+    margin: 10px 0 20px;
+}
+/* Short Note section (continued) */
+.short-note .btn {
+    text-decoration: none;
+    color: #fff;
+    background: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.short-note .btn:hover {
+    background: #fff;
+    color: #333;
+    transform: scale(1.1);
+}
+
+/* Footer styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-top: 2px solid #fff;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chapter {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter {
+        width: calc(100% - 40px);
+    }
+}

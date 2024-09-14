@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 2: Basic Input and Output">
+    <title>C Language - Chapter 2: Basic Input and Output</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00796b;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #fff;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 2: Basic Input and Output</h1>
+            <p>Learn how to handle basic input and output operations in C programming.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#functions">Input/Output Functions</a></li>
+            <li><a href="#formatted">Formatted Input/Output</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2>1. Introduction to Input/Output in C</h2>
+                <p>Input and output operations are essential for interacting with the user and handling data. In C, these operations are performed using standard library functions.</p>
+                <p>The two main standard I/O streams are:</p>
+                <ul>
+                    <li><strong>Standard Input (stdin):</strong> Input data from the keyboard or other input devices.</li>
+                    <li><strong>Standard Output (stdout):</strong> Output data to the screen or other output devices.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Basic Input/Output Functions Section -->
+        <section id="functions" class="section">
+            <div class="container">
+                <h2>2. Basic Input/Output Functions</h2>
+
+                <h3>printf()</h3>
+                <p>The <code>printf()</code> function is used to print formatted output to the console:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!\n");
+    printf("The value of PI is approximately %.2f\n", 3.14159);
+    return 0;
+}
+                </code></pre>
+
+                <h3>scanf()</h3>
+                <p>The <code>scanf()</code> function is used to read formatted input from the console:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int age;
+    printf("Enter your age: ");
+    scanf("%d", &age);
+    printf("You are %d years old.\n", age);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Formatted Input/Output Section -->
+        <section id="formatted" class="section">
+            <div class="container">
+                <h2>3. Formatted Input/Output</h2>
+                
+                <h3>Formatting Output</h3>
+                <p>The <code>printf()</code> function supports various format specifiers to control how data is displayed:</p>
+                <ul>
+                    <li><strong>%d:</strong> Integer</li>
+                    <li><strong>%f:</strong> Floating-point number</li>
+                    <li><strong>%c:</strong> Character</li>
+                    <li><strong>%s:</strong> String</li>
+                </ul>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num = 100;
+    float pi = 3.14159;
+    char letter = 'A';
+    char name[] = "Alice";
+
+    printf("Integer: %d\n", num);
+    printf("Float: %.2f\n", pi);
+    printf("Character: %c\n", letter);
+    printf("String: %s\n", name);
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Reading Formatted Input</h3>
+                <p>The <code>scanf()</code> function also supports format specifiers for reading input:</p>
+                <ul>
+                    <li><strong>%d:</strong> Integer input</li>
+                    <li><strong>%f:</strong> Floating-point input</li>
+                    <li><strong>%c:</strong> Character input</li>
+                    <li><strong>%s:</strong> String input</li>
+                </ul>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num;
+    float height;
+    char letter;
+    char name[50];
+
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    printf("Enter your height: ");
+    scanf("%f", &height);
+    printf("Enter a character: ");
+    scanf(" %c", &letter); // Note the space before %c
+    printf("Enter your name: ");
+    scanf("%s", name);
+
+    printf("Integer: %d\n", num);
+    printf("Height: %.2f\n", height);
+    printf("Character: %c\n", letter);
+    printf("Name: %s\n", name);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2>4. Examples</h2>
+                <h3>Simple Input/Output Programs</h3>
+                <p>Here are some simple programs to demonstrate basic input/output:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Welcome to C programming!\n");
+    return 0;
+}
+                </code></pre>
+
+                <h3>Formatted Output Examples</h3>
+                <p>Examples of formatted output using <code>printf()</code>:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 10;
+    float y = 5.678;
+    printf("Value of x: %d\n", x);
+    printf("Value of y: %.2f\n", y);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>5. Exercises</h2>
+                <p>Try these exercises to practice input and output operations:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Write a program that reads two integers and prints their sum and difference.</li>
+                    <li><strong>Exercise 2:</strong> Create a program that reads a floating-point number and prints it in scientific notation.</li>
+                    <li><strong>Exercise 3:</strong> Develop a program that reads a character and a string, then prints them separately.</li>
+                    <li><strong>Exercise 4:</strong> Implement a program that calculates and displays the area of a circle based on user input for the radius.</li>
+                    <li><strong>Exercise 5:</strong> Write a program that takes the user's name and age and prints a personalized greeting message.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 3: Control Statements">
+    <title>C Language - Chapter 3: Control Statements</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00796b;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #fff;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 3: Control Statements</h1>
+            <p>Learn about different control statements in C to manage the flow of your program.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#conditional">Conditional Statements</a></li>
+            <li><a href="#looping">Looping Statements</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2>1. Introduction to Control Statements</h2>
+                <p>Control statements are used to alter the flow of execution based on certain conditions or repeat a block of code multiple times.</p>
+                <p>The main types of control statements are:</p>
+                <ul>
+                    <li><strong>Conditional Statements:</strong> `if`, `if-else`, `switch`</li>
+                    <li><strong>Looping Statements:</strong> `for`, `while`, `do-while`</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Conditional Statements Section -->
+        <section id="conditional" class="section">
+            <div class="container">
+                <h2>2. Conditional Statements</h2>
+
+                <h3>if</h3>
+                <p>The `if` statement allows you to execute a block of code if a specified condition is true:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num = 10;
+
+    if (num > 0) {
+        printf("The number is positive.\n");
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>if-else</h3>
+                <p>The `if-else` statement executes one block of code if the condition is true and another block if it is false:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num = -5;
+
+    if (num >= 0) {
+        printf("The number is non-negative.\n");
+    } else {
+        printf("The number is negative.\n");
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>else-if</h3>
+                <p>The `else-if` statement allows you to test multiple conditions:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num = 50;
+
+    if (num > 100) {
+        printf("Number is greater than 100.\n");
+    } else if (num > 50) {
+        printf("Number is greater than 50 but less than or equal to 100.\n");
+    } else {
+        printf("Number is 50 or less.\n");
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>switch</h3>
+                <p>The `switch` statement allows you to execute one block of code from multiple options based on the value of a variable:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int day = 3;
+
+    switch (day) {
+        case 1:
+            printf("Monday\n");
+            break;
+        case 2:
+            printf("Tuesday\n");
+            break;
+        case 3:
+            printf("Wednesday\n");
+            break;
+        default:
+            printf("Invalid day\n");
+            break;
+    }
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Looping Statements Section -->
+        <section id="looping" class="section">
+            <div class="container">
+                <h2>3. Looping Statements</h2>
+
+                <h3>for</h3>
+                <p>The `for` loop is used to execute a block of code a specific number of times:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    for (int i = 0; i &lt; 5; i++) {
+        printf("Iteration %d\n", i);
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>while</h3>
+                <p>The `while` loop continues to execute as long as the condition remains true:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 0;
+    while (i &lt; 5) {
+        printf("Iteration %d\n", i);
+        i++;
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>do-while</h3>
+                <p>The `do-while` loop is similar to the `while` loop, but it guarantees that the block of code will be executed at least once:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 0;
+    do {
+        printf("Iteration %d\n", i);
+        i++;
+    } while (i &lt; 5);
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2>4. Examples</h2>
+                <h3>Conditional Statements Example</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int number = 7;
+
+    if (number % 2 == 0) {
+        printf("%d is even.\n", number);
+    } else {
+        printf("%d is odd.\n", number);
+    }
+
+    return 0;
+}
+                </code></pre>
+
+                <h3>Looping Statements Example</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i;
+    for (i = 1; i &lt;= 10; i++) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>5. Exercises</h2>
+                <p>Try these exercises to practice control statements:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Write a program to find the largest of three numbers.</li>
+                    <li><strong>Exercise 2:</strong> Create a program that prints numbers from 1 to 100, replacing multiples of 3 with "Fizz" and multiples of 5 with "Buzz".</li>
+                    <li><strong>Exercise 3:</strong> Implement a program that calculates the factorial of a number using both `for` and `while` loops.</li>
+                    <li><strong>Exercise 4:</strong> Develop a program that prints the Fibonacci series up to a given number of terms.</li>
+                    <li><strong>Exercise 5:</strong> Write a program to check if a given year is a leap year.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>

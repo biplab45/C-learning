@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C Language Chapter 9: Arrays and Strings">
+    <title>C Language - Chapter 9: Arrays and Strings</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #eef2f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #6c63ff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6c63ff;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .section p, .section ul {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #6c63ff;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section code {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        h2, h3, pre, p {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chapter 9: Arrays and Strings in C</h1>
+            <p>Learn about arrays and strings, their manipulation, and related operations in C programming.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#arrays">Arrays</a></li>
+            <li><a href="#strings">Strings</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Arrays Section -->
+        <section id="arrays" class="section">
+            <div class="container">
+                <h2>1. Introduction to Arrays</h2>
+                <p>An array is a collection of elements of the same type stored in contiguous memory locations. It allows you to store multiple values in a single variable.</p>
+
+                <h3>Definition and Declaration</h3>
+                <p>Arrays are declared with a specific size. For example, to declare an array of 5 integers:</p>
+                <pre><code>
+int numbers[5];
+                </code></pre>
+
+                <h3>Initializing Arrays</h3>
+                <p>Arrays can be initialized at the time of declaration:</p>
+                <pre><code>
+int numbers[5] = {1, 2, 3, 4, 5};
+                </code></pre>
+
+                <h3>Accessing Array Elements</h3>
+                <p>Array elements are accessed using their index, starting from 0:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    printf("First element: %d\n", numbers[0]);
+    printf("Second element: %d\n", numbers[1]);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Multidimensional Arrays</h3>
+                <p>Multidimensional arrays are arrays of arrays. For example, a 2D array:</p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Strings Section -->
+        <section id="strings" class="section">
+            <div class="container">
+                <h2>2. Introduction to Strings</h2>
+                <p>Strings are arrays of characters terminated by a null character ('\0'). They are used to represent text.</p>
+
+                <h3>Definition and Declaration</h3>
+                <p>Strings are declared similarly to arrays but with characters:</p>
+                <pre><code>
+char name[20];
+                </code></pre>
+
+                <h3>String Initialization</h3>
+                <p>Strings can be initialized with a string literal:</p>
+                <pre><code>
+char name[] = "Hello, World!";
+                </code></pre>
+
+                <h3>Common String Functions</h3>
+                <ul>
+                    <li><strong>strlen()</strong>: Returns the length of a string.</li>
+                    <li><strong>strcpy()</strong>: Copies one string to another.</li>
+                    <li><strong>strcat()</strong>: Concatenates two strings.</li>
+                    <li><strong>strcmp()</strong>: Compares two strings.</li>
+                </ul>
+
+                <h3>Example 1: String Length</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[] = "Hello";
+    printf("Length of string: %lu\n", strlen(str));
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 2: String Copy</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char source[] = "Source";
+    char destination[20];
+    strcpy(destination, source);
+    printf("Destination string: %s\n", destination);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 3: String Concatenation</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str1[20] = "Hello";
+    char str2[] = " World!";
+    strcat(str1, str2);
+    printf("Concatenated string: %s\n", str1);
+    return 0;
+}
+                </code></pre>
+
+                <h3>Example 4: String Comparison</h3>
+                <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str1[] = "Hello";
+    char str2[] = "Hello";
+    if (strcmp(str1, str2) == 0) {
+        printf("Strings are equal\n");
+    } else {
+        printf("Strings are not equal\n");
+    }
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <h2>3. Exercises</h2>
+                <p>Try solving these exercises to test your understanding of arrays and strings:</p>
+                <ul>
+                    <li><strong>Exercise 1:</strong> Write a program to reverse an array of integers.</li>
+                    <li><strong>Exercise 2:</strong> Implement a function to find the maximum element in a 2D array.</li>
+                    <li><strong>Exercise 3:</strong> Write a program to count the number of vowels in a string.</li>
+                    <li><strong>Exercise 4:</strong> Create a program to find the length of a string without using the <code>strlen()</code> function.</li>
+                    <li><strong>Exercise 5:</strong> Implement a program to concatenate two strings without using the <code>strcat()</code> function.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biplab Goswami. All rights reserved.</p>
+    </footer>
+</body>
+</html>
